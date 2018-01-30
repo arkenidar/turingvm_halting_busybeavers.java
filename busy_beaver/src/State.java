@@ -15,4 +15,9 @@ public class State {
         boolean c2 = tuples[1] == another.tuples[1];
         return c1 && c2;
     }
+
+    @Override
+    public String toString(){
+        return "["+tuples[0]+","+tuples[1]+"]";
+    }
 }

@@ -23,4 +23,9 @@ public class Tuple {
                 moveRight == another.moveRight &&
                 nextStateIndex == another.nextStateIndex;
     }
+
+    @Override
+    public String toString(){
+        return "("+(writeOne?1:0)+","+(moveRight?"R":"L")+","+nextStateIndex+")";
+    }
 }

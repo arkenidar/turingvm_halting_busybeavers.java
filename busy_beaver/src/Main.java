@@ -1,6 +1,4 @@
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 
 public class Main {
 
@@ -87,5 +85,16 @@ function run(states){
                 new State(new Tuple(true, false, 0), new Tuple(true, false, 0))
         };
         System.out.println("infinitely_looping_program: "+run(infinitely_looping_program));
+
+        TupleGenerator tupleGenerator = new TupleGenerator(3);
+        for (Tuple tuple : tupleGenerator) {
+            System.out.println(tuple);
+        }
+
+        StateGenerator stateGenerator = new StateGenerator(3);
+        for (State state : stateGenerator) {
+            System.out.println(state);
+        }
+
     }
 }

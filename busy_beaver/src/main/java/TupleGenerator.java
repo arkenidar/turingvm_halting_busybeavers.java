@@ -14,14 +14,14 @@ public class TupleGenerator extends Generator<Tuple> {
 
     private int statesCount;
 
-    public TupleGenerator(int statesCount){
+    public TupleGenerator(int statesCount) {
         this.statesCount = statesCount;
     }
 
     @Override
     protected void run() throws InterruptedException {
-        for(boolean valueToWrite : new BooleanGenerator()){
-            for(boolean moveRigth : new BooleanGenerator()){
+        for (boolean valueToWrite : new BooleanGenerator()) {
+            for (boolean moveRigth : new BooleanGenerator()) {
                 for (int nextState = 0; nextState < statesCount; nextState++) {
                     yield(new Tuple(valueToWrite, moveRigth, nextState));
                 }

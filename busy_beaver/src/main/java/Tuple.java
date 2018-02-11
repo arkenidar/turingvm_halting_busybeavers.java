@@ -4,13 +4,13 @@ public class Tuple {
     public final boolean moveRight;
     public final int nextStateIndex;
 
-    public Tuple(boolean writeOne, boolean moveRight, int nextStateIndex){
+    public Tuple(boolean writeOne, boolean moveRight, int nextStateIndex) {
         this.writeOne = writeOne;
         this.moveRight = moveRight;
         this.nextStateIndex = nextStateIndex;
     }
 
-    public Tuple(Tuple another){
+    public Tuple(Tuple another) {
         this.writeOne = another.writeOne;
         this.moveRight = another.moveRight;
         this.nextStateIndex = another.nextStateIndex;
@@ -25,7 +25,12 @@ public class Tuple {
     }
 
     @Override
-    public String toString(){
-        return "("+(writeOne?1:0)+","+(moveRight?"R":"L")+","+nextStateIndex+")";
+    public String toString() {
+        return "(" + (writeOne ? 1 : 0) + "," + (moveRight ? "R" : "L") + "," + nextStateIndex + ")";
+    }
+
+    @Override
+    public int hashCode() {
+        return (writeOne ? 1 : 0) + (moveRight ? 1 : 0) + nextStateIndex;
     }
 }

@@ -6,12 +6,12 @@ import java.util.NoSuchElementException;
 /**
  * This class allows specifying Python generator-like sequences. For examples,
  * see the JUnit test case.
- *
+ * <p>
  * The implementation uses a separate Thread to produce the sequence items. This
  * is certainly not as fast as eg. a for-loop, but not horribly slow either. On
  * a machine with a dual core i5 CPU @ 2.67 GHz, 1000 items can be produced in
  * &lt; 0.03s.
- *
+ * <p>
  * By overriding finalize(), the class takes care not to leave any Threads
  * running longer than necessary.
  */
@@ -19,10 +19,12 @@ public abstract class Generator<T> implements Iterable<T> {
 
     private class Condition {
         private boolean isSet;
+
         public synchronized void set() {
             isSet = true;
             notify();
         }
+
         public synchronized void await() throws InterruptedException {
             try {
                 if (isSet)
@@ -51,6 +53,7 @@ public abstract class Generator<T> implements Iterable<T> {
             public boolean hasNext() {
                 return waitForNext();
             }
+
             @Override
             public T next() {
                 if (!waitForNext())
@@ -58,10 +61,12 @@ public abstract class Generator<T> implements Iterable<T> {
                 nextItemAvailable = false;
                 return nextItem;
             }
+
             @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }
+
             private boolean waitForNext() {
                 if (nextItemAvailable)
                     return true;
@@ -113,12 +118,5 @@ public abstract class Generator<T> implements Iterable<T> {
         });
         producer.setDaemon(true);
         producer.start();
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        producer.interrupt();
-        producer.join();
-        super.finalize();
     }
 }

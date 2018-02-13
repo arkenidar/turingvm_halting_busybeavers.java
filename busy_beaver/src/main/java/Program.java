@@ -52,7 +52,7 @@ public class Program {
             Tuple currentTuple = states.get(currentState).getTuples()[symbolUnderTape ? 1 : 0];
             Snapshot snapshot = new Snapshot(currentTuple, tape, states.get(currentState));
 
-            if (false)
+            if (true)
                 if (snapshots.contains(snapshot))
                     return -1;
                 else
@@ -69,8 +69,8 @@ public class Program {
 
             stepCounter++;
 
-            // safety measure
-            if (stepCounter == 50) // could be larger
+            // safety measure (disabled)
+            if (false && stepCounter == 100000) // could be larger
                 return -3; // it should not be called
         }
         return tape.countOnes();

@@ -1,2 +1,7 @@
 # turingvm_halting_busybeavers.java
-A Turing Virtual Machine, that detects infinite loops (thus solving the "Turing's Halting Problem"). This code solves the Busy Beaver problem too (it relies on the solution of the Halting Problem).
+
+This program is solving the "busy beaver problem".
+The exit conditions:
+- Halting State is reached
+- End Of Tape is reached
+- Infinite Looping is detected
